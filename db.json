@@ -1,0 +1,135 @@
+{
+  "Users":[
+    { "id": 1,
+      "name": "Sydney",
+      "days": [
+        {
+          "id": 1,
+          "name": "Monday",
+          "foods": [
+            { "Breakfast": [
+              "Cereal"
+              ]
+            },
+            { "Lunch": [
+              "Salad"
+              ]
+            },
+            { "Dinner": [
+              "Pasta"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Tuesday",
+          "foods": [
+            { "Breakfast": [
+              "Oatmeal"
+              ]
+            },
+            { "Lunch": [
+              "Salad"
+              ]
+            },
+            { "Dinner": [
+              "Pasta"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Wednesday",
+          "foods": [
+            { "Breakfast": [
+              "Yogurt"
+              ]
+            },
+            { "Lunch": [
+              "Salad"
+              ]
+            },
+            { "Dinner": [
+              "Pasta"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Thursday",
+          "foods": [
+            { "Breakfast": [
+              "Yogurt"
+              ]
+            },
+            { "Lunch": [
+              "Sandwich"
+              ]
+            },
+            { "Dinner": [
+              "Pasta"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Friday",
+          "foods": [
+            { "Breakfast": [
+              "Nothing"
+              ]
+            },
+            { "Lunch": [
+              "Salad"
+              ]
+            },
+            { "Dinner": [
+              "Steak"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Saturday",
+          "foods": [
+            { "Breakfast": [
+              "Nothing"
+              ]
+            },
+            { "Lunch": [
+              "Salad"
+              ]
+            },
+            { "Dinner": [
+              "Steak"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Sunday",
+          "foods": [
+            { "Breakfast": [
+              "Nothing"
+              ]
+            },
+            { "Lunch": [
+              "Salad"
+              ]
+            },
+            { "Dinner": [
+              "Steak"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
