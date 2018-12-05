@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let oneWeek = [];
   const searchFood = document.querySelector('#search-food');
   const searchFoodResult = document.querySelector('#result');
-//  let mealTimeContainer = docoument.querySelectorAll('.meal-time-container')
+
 
   //--------------fetch days & show-----------------//
   fetch('http://localhost:3000/api/v1/users/1/days')
@@ -39,23 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
       breakfastCard.innerHTML = '';
       breakfastFood.forEach((food) =>
       breakfastCard.innerHTML += `
-        <ul class="meal-time-container">
+        <ul class="breakfast-time-container">
           <li>${food.name}
-          <button class="mini ui teal basic button delete">-</button>
+          <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[0].id}-foodId-${food.id}">-</button>
         </li>
 
         </ul>
         `
       )//end of rendering breakfast card details
 
+
       //render lunch details for specific day
       lunchTitle.innerText = `${foundDay.mealtimes[1].name}`
       lunchCard.innerHTML = '';
       lunchFood.forEach((food) =>
       lunchCard.innerHTML += `
-        <ul class="meal-time-container">
+        <ul class="meal-time-container" data-id=${foundDay.mealtimes[1].id}>
           <li>${food.name}
-          <button class="mini ui teal basic button delete">-</button>
+          <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[1].id}-foodId-${food.id}">-</button>
         </li>
 
         </ul>
@@ -67,31 +68,64 @@ document.addEventListener('DOMContentLoaded', () => {
     dinnerCard.innerHTML = '';
     dinnerFood.forEach((food) =>
     dinnerCard.innerHTML += `
-      <ul class="meal-time-container">
+      <ul
+        class="meal-time-container" data-id=${foundDay.mealtimes[2].id}
+      >
         <li>${food.name}
-        <button class="mini ui teal basic button">-</button>
-      </li>
-
+          <button
+            class="mini ui teal basic button" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[2].id}-foodId-${food.id}"
+          >
+            -
+          </button>
+        </li>
       </ul>
     `
     )//end of dinner details
 
   }//end of if statement e.target.className === "list-group-item"
 
-  //-------------START event listener delete food-------//
-  // mealTimeContainer.addEventListener('click', function(event){
-  //   debugger
-  // });
-  //-------------END event listener delete food-------//
+
+  //-------------START event listener delete food BREAKFAST-------//
+  let breakfastTimeContainer = document.querySelector('.breakfast-time-container')
+  breakfastTimeContainer.addEventListener('click', function(event){
+
+    if (event.target.className.includes('delete')){
+      let clickedFoodId = parseInt(event.target.id)
+      // let dayId =
+      // debugger
+      deleteFood(clickedFoodId)
+    }
+  });
+  //-------------END event listener delete food BREAKFAST-------//
+
+  //-------------START event listener delete food LUNCH-------//
+  let lunchTimeContainer = document.querySelector('.lunch-time-container')
+  lunchTimeContainer.addEventListener('click', function(event){
+
+    if (event.target.className.includes('delete')){
+      let clickedFoodId = parseInt(event.target.id)
+      // let dayId =
+      // debugger
+      deleteFood(clickedFoodId)
+    }
+  });
+  //-------------END event listener delete food LUNCH-------//
+
+  //-------------START event listener delete food DINNER-------//
+  let dinnerTimeContainer = document.querySelector('.dinner-time-container')
+  dinnerTimeContainer.addEventListener('click', function(event){
+
+    if (event.target.className.includes('delete')){
+      let clickedFoodId = parseInt(event.target.id)
+      deleteFood(clickedFoodId)
+    }
+  });
+  //-------------END event listener delete food DINNER-------//
+
+
 })
 //-------------END event listener click on days-------//
 
-// else if (e.target.className == 'delete') { //the user clicked one of the delete buttons
-//     // deleteImg(e.target.dataset.id) //helper fn that sends a DELETE request to the server
-//     // // document.getElementById(`image-${e.target.dataset.id}`).remove()
-//     // imagesDiv.querySelector(`#image-${e.target.dataset.id}`).remove() //remove the image div from the page
-//     debugger
-// }
 
   //-------------start of search for food-------------//
   function initEvent() {
@@ -171,6 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
 //*****HELPER**FUNCTIONS*****
 //***************************
 
-function deleteImg(foodId) {
-  return fetch(`http://localhost:3000/api/v1/users/1/days/${foodId}`, { method: 'DELETE' })
+function deleteFood(id) {
+  let dayId = event.target.id.split('-')[1]
+  let mealtimeId = event.target.id.split('-')[3]
+  let foodId = event.target.id.split('-')[5]
+  return fetch(`http://localhost:3000/api/v1/users/1/days/${dayId}/mealtimes/${mealtimeId}/foods/${foodId}`, { method: 'DELETE' })
 }
