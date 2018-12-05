@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchFoodResult = document.querySelector('#result')
 
 
-
-
   //--------------fetch days & show-----------------//
   fetch('http://localhost:3000/api/v1/users/1/days')
     .then(response => response.json())
@@ -87,8 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //   <button class="mini ui teal basic button">-</button>
         //   </li>
         // </ul>
-      }
-    })
+
 
         //     breakfastCard.innerHTML = `
         //       <ul>
@@ -101,16 +98,16 @@ document.addEventListener('DOMContentLoaded', () => {
   //   }//end of if click on day
   // })//end of addEventListener
 
-      let foundDay = allDays.find((day) => day.id == clickedDayId )
-      // console.log(foundDay);
-
-            breakfastCard.innerHTML = `
-              <ul>
-              <li>${foods[0].name}
-              <button class="mini ui teal basic button">-</button>
-              </li>
-              </ul>
-              `
+    //   let foundDay = allDays.find((day) => day.id == clickedDayId )
+    //   // console.log(foundDay);
+    //
+    //         breakfastCard.innerHTML = `
+    //           <ul>
+    //           <li>${foods[0].name}
+    //           <button class="mini ui teal basic button">-</button>
+    //           </li>
+    //           </ul>
+    //           `
     }//end of if click on day
   })//end of addEventListener
   //-------------END event listener click on days-------//
@@ -175,8 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const html = `
     <div class="card">
       <div class="card-header">
-        <p>${foodName1} - ${foodName2} ${energy}</p>
-        <button>Add to meal</button>
+        <p class="food-name">${foodName1} -${foodName2}</p>
+        <p>${energy}</p>
+        <button class="add-to-mealtime">Add to meal</button>
       </div>
     </div>
     `
@@ -185,6 +183,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initEvent()
   //-------------end of search for food--------------//
+  searchFoodResult.addEventListener('click', e =>{
+    if(e.target.className === "add-to-mealtime"){
+      let foodName = document.querySelector('.food-name').innerText
+      
+    }
+  })
+  //-------------start of add to list---------------//
+
+  //-------------end of add to list-----------------//
 
 
 })//end of DOM Content
