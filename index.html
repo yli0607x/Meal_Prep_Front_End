@@ -12,8 +12,11 @@
       width: 100%;
     }
   </style>
+
 </head>
 <body>
+  <div id="myCalendar">
+  </div>
   <div class='row'>
 
     <div class='col-md-3'>
@@ -41,8 +44,21 @@
         </div>
       </div>
     </div>
+
     <div class='col-md-3'>
-      <div class="shopping List">
+      <div id="search-food">
+        <form id="search" name="search">
+          <input name="name" placeholder="Type a food or a meal...">
+          <button type="submit">SEARCH</button>
+        </form>
+      </div>
+      <div id="result">
+      </div>
+    </div>
+
+
+    <div class='col-md-3'>
+      <div class="shopping-list">
       </div>
     </div>
   </div>
