@@ -7,19 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const breakfastCard = document.querySelector('#breakfast-detail')
   const lunchCard = document.querySelector('#lunch-detail')
   const dinnerCard = document.querySelector('#dinner-detail')
-<<<<<<< HEAD
 
-  let oneWeek = []
-
-  const searchFood = document.querySelector('#search-food')
-  const searchFoodResult = document.querySelector('#result')
-
-=======
   let oneWeek = [];
   const searchFood = document.querySelector('#search-food');
   const searchFoodResult = document.querySelector('#result');
 //  let mealTimeContainer = docoument.querySelectorAll('.meal-time-container')
->>>>>>> e62d0098dfe17215e8c953e347b9a833bed4f5fc
+
 
   //--------------fetch days & show-----------------//
   fetch('http://localhost:3000/api/v1/users/1/days')
