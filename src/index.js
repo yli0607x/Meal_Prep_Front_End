@@ -7,9 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const breakfastCard = document.querySelector('#breakfast-detail')
   const lunchCard = document.querySelector('#lunch-detail')
   const dinnerCard = document.querySelector('#dinner-detail')
+
   let oneWeek = [];
   const searchFood = document.querySelector('#search-food');
   const searchFoodResult = document.querySelector('#result');
+
 
 
   //--------------fetch days & show-----------------//
@@ -187,8 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const html = `
     <div class="card">
       <div class="card-header">
-        <p>${foodName1} - ${foodName2} ${energy}</p>
-        <button>Add to meal</button>
+        <p class="food-name">${foodName1} -${foodName2}</p>
+        <p>${energy}</p>
+        <button class="add-to-mealtime">Add to meal</button>
       </div>
     </div>
     `
@@ -197,6 +200,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initEvent()
   //-------------end of search for food--------------//
+  searchFoodResult.addEventListener('click', e =>{
+    if(e.target.className === "add-to-mealtime"){
+      let foodName = document.querySelector('.food-name').innerText
+
+    }
+  })
+  //-------------start of add to list---------------//
+
+  //-------------end of add to list-----------------//
 
 
 })//end of DOM Content
