@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('http://localhost:3000/api/v1/users/1/days')
     .then(res => res.json())
     .then(json => {
+      debugger
       allDays = json
       json.forEach(day => {
         dayContainer.innerHTML += `<li style="text-align:center" class="list-group-item" id="${day.id}">${day.name}</li>`
@@ -27,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`http://localhost:3000/api/v1/users/1/days/${clickedDayId}/foods`)
           .then(r => r.json())
           .then(foods =>{
-            debugger
             breakfastCard.innerHTML = `
               <ul>
               <li>${foods[0].name}
