@@ -4,10 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let breakfastTitle = document.getElementById('breakfast-title');
   let lunchTitle = document.getElementById('lunch-title');
   let dinnerTitle = document.getElementById('dinner-title');
+
+//-----did't use these, do we need them?
   const breakfastCard = document.querySelector('#breakfast-detail')
   const lunchCard = document.querySelector('#lunch-detail')
   const dinnerCard = document.querySelector('#dinner-detail')
-
+//------------------
+  let breakfastContainer = document.querySelector('.breakfast-time-container')
+  let lunchContainer = document.querySelector('.lunch-time-container')
+  let dinnerContainer = document.querySelector('.dinner-time-container')
   let oneWeek = [];
   const searchFood = document.querySelector('#search-food');
   const searchFoodResult = document.querySelector('#result');
@@ -38,49 +43,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
       //render breakfast details for specific day
       breakfastTitle.innerText = `${foundDay.mealtimes[0].name}`
-      breakfastCard.innerHTML = '';
+      breakfastContainer.innerHTML = '';
       breakfastFood.forEach((food) =>
-      breakfastCard.innerHTML += `
-        <ul class="breakfast-time-container">
-          <li>${food.name}
+      breakfastContainer.innerHTML += `
+        <li>${food.name}
           <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[0].id}-foodId-${food.id}">-</button>
         </li>
-
-        </ul>
         `
       )//end of rendering breakfast card details
 
 
       //render lunch details for specific day
       lunchTitle.innerText = `${foundDay.mealtimes[1].name}`
-      lunchCard.innerHTML = '';
+      lunchContainer.innerHTML = '';
       lunchFood.forEach((food) =>
-      lunchCard.innerHTML += `
-        <ul class="meal-time-container" data-id=${foundDay.mealtimes[1].id}>
-          <li>${food.name}
-          <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[1].id}-foodId-${food.id}">-</button>
+      lunchContainer.innerHTML += `
+        <li>${food.name}
+          <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[1].id}-foodId-${food.id}"
+        >
+          -
+        </button>
         </li>
-
-        </ul>
       `
     )//end of rendering lunch card details
 
     //render dinner details for specific day
     dinnerTitle.innerText = `${foundDay.mealtimes[2].name}`
-    dinnerCard.innerHTML = '';
+    dinnerContainer.innerHTML = '';
     dinnerFood.forEach((food) =>
-    dinnerCard.innerHTML += `
-      <ul
-        class="meal-time-container" data-id=${foundDay.mealtimes[2].id}
-      >
+    dinnerContainer.innerHTML += `
         <li>${food.name}
           <button
-            class="mini ui teal basic button" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[2].id}-foodId-${food.id}"
+            class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[2].id}-foodId-${food.id}"
           >
             -
           </button>
         </li>
-      </ul>
     `
     )//end of dinner details
 
@@ -88,37 +86,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   //-------------START event listener delete food BREAKFAST-------//
-  let breakfastTimeContainer = document.querySelector('.breakfast-time-container')
-  breakfastTimeContainer.addEventListener('click', function(event){
-
+  breakfastContainer.addEventListener('click', function(event){
     if (event.target.className.includes('delete')){
-      let clickedFoodId = parseInt(event.target.id)
-      // let dayId =
-      // debugger
+      let clickedFoodId = event.target.id;
+      let thisBreakfastButton = document.getElementById(clickedFoodId)
+      let thisBreakfast = thisBreakfastButton.parentElement
+      thisBreakfast.remove();
       deleteFood(clickedFoodId)
     }
   });
   //-------------END event listener delete food BREAKFAST-------//
 
   //-------------START event listener delete food LUNCH-------//
-  let lunchTimeContainer = document.querySelector('.lunch-time-container')
-  lunchTimeContainer.addEventListener('click', function(event){
-
+  lunchContainer.addEventListener('click', function(event){
+    console.log(event);
+    console.log(event.target.className.includes('delete'));
     if (event.target.className.includes('delete')){
-      let clickedFoodId = parseInt(event.target.id)
-      // let dayId =
-      // debugger
+
+      let clickedFoodId = event.target.id
+      let thisLunchButton = document.getElementById(clickedFoodId)
+      let thisLunch = thisLunchButton.parentElement
+      //debugger
+      thisLunch.remove();
       deleteFood(clickedFoodId)
     }
   });
   //-------------END event listener delete food LUNCH-------//
 
   //-------------START event listener delete food DINNER-------//
-  let dinnerTimeContainer = document.querySelector('.dinner-time-container')
-  dinnerTimeContainer.addEventListener('click', function(event){
+  dinnerContainer.addEventListener('click', function(event){
 
     if (event.target.className.includes('delete')){
-      let clickedFoodId = parseInt(event.target.id)
+      let clickedFoodId = event.target.id
+      debugger
+      let thisDinnerButton = document.getElementById(clickedFoodId)
+      let thisDinner = thisDinnerButton.parentElement
+      thisDinner.remove();
       deleteFood(clickedFoodId)
     }
   });
