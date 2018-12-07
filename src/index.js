@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let foodCell = document.getElementById(`${userDataJSON[i].id}-${userDataJSON[i].mealtimes[j].id}`)
 
           foods.forEach(food => foodCell.innerHTML += `<li>${food.name}
-            <button class="mini ui grey button delete" id="dayId-${userDataJSON[i].id}-mealtimeId-${userDataJSON[i].mealtimes[j].id}-foodId-${food.id}">-</button>
+            <span class="delete" id="dayId-${userDataJSON[i].id}-mealtimeId-${userDataJSON[i].mealtimes[j].id}-foodId-${food.id}"> -</span>
           </li>`)
         }
       }
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(newFoodObj)
                 addFoodContainer.innerHTML += `
                 <li>${addFoodName}
-                  <button class="mini ui grey button delete" id="dayId-${dayId}-mealtimeId-${mealtimeId}-foodId-${newFoodObj.id}">-</button>
+                  <span class="delete" id="dayId-${dayId}-mealtimeId-${mealtimeId}-foodId-${newFoodObj.id}"> -</span>
                 </li>`
               })//end of then
     }

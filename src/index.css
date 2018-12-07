@@ -33,7 +33,7 @@ input:focus{
     outline:none;
     color: #86a8e7;
 }
-
+*
 span{
     margin-right: 10px;
     text-align:center;
@@ -137,11 +137,12 @@ button:hover {
 .display{
     display:none;
     transition: 0.3s linear;
-}
+}*/
 .checked{
     color:gray;
     text-decoration:line-through;
 }
+/*
 
 .fa-pencil-alt{
     float: right;
