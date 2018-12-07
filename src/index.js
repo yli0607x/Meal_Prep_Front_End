@@ -58,69 +58,69 @@ document.addEventListener('DOMContentLoaded', () => {
     })//end of then
   //---------------END fetch days & show-----------//
 
-  //-------------event listener click on days-------//
-  dayContainer.addEventListener('click', e => {
-    if(e.target.className === "list-group-item") {
-      let clickedDayId = e.target.id
-      let foundDay = oneWeek.find((day) => day.id == clickedDayId )
-      let breakfastFood = foundDay.mealtimes[0].foods
-      let lunchFood = foundDay.mealtimes[1].foods
-      let dinnerFood = foundDay.mealtimes[2].foods
-      let breakfastId = foundDay.mealtimes[0].id
-      let lunchId = foundDay.mealtimes[1].id
-      let dinnerId = foundDay.mealtimes[2].id
-
-      //render breakfast details for specific day
-      breakfastTitle.innerHTML = `<h3>${foundDay.mealtimes[0].name}</h3>
-      <button class="addButton" id="${breakfastId}">+</button>`
-      breakfastContainer.innerHTML = '';
-      breakfastFood.forEach((food) =>
-      breakfastContainer.innerHTML += `
-      <div id="mealtime-${breakfastId}"
-        <li>${food.name}
-          <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[0].id}-foodId-${food.id}">-</button>
-        </li>
-      </div>
-        `
-      )//end of rendering breakfast card details
-
-
-      //render lunch details for specific day
-      lunchTitle.innerHTML = `<h3>${foundDay.mealtimes[1].name}</h3>
-      <button class="addButton" id="${lunchId}">+</button>`
-      lunchContainer.innerHTML = '';
-      lunchFood.forEach((food) =>
-      lunchContainer.innerHTML += `
-      <div id="mealtime-${lunchId}"
-        <li>${food.name}
-          <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[1].id}-foodId-${food.id}"
-        >
-          -
-        </button>
-        </li>
-      </div>
-      `
-    )//end of rendering lunch card details
-
-    //render dinner details for specific day
-    dinnerTitle.innerHTML = `<h3>${foundDay.mealtimes[2].name}</h3>
-    <button class="addButton" id="${dinnerId}">+</button>`
-    dinnerContainer.innerHTML = '';
-    dinnerFood.forEach((food) =>
-    dinnerContainer.innerHTML += `
-    <div id="mealtime-${dinnerId}"
-        <li>${food.name}
-          <button
-            class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[2].id}-foodId-${food.id}"
-          >
-            -
-          </button>
-        </li>
-    </div>
-    `
-    )//end of dinner details
-
-  }//end of if statement e.target.className === "list-group-item"
+  // //-------------event listener click on days-------//
+  // dayContainer.addEventListener('click', e => {
+  //   if(e.target.className === "list-group-item") {
+  //     let clickedDayId = e.target.id
+  //     let foundDay = oneWeek.find((day) => day.id == clickedDayId )
+  //     let breakfastFood = foundDay.mealtimes[0].foods
+  //     let lunchFood = foundDay.mealtimes[1].foods
+  //     let dinnerFood = foundDay.mealtimes[2].foods
+  //     let breakfastId = foundDay.mealtimes[0].id
+  //     let lunchId = foundDay.mealtimes[1].id
+  //     let dinnerId = foundDay.mealtimes[2].id
+  //
+  //     //render breakfast details for specific day
+  //     breakfastTitle.innerHTML = `<h3>${foundDay.mealtimes[0].name}</h3>
+  //     <button class="addButton" id="${breakfastId}">+</button>`
+  //     breakfastContainer.innerHTML = '';
+  //     breakfastFood.forEach((food) =>
+  //     breakfastContainer.innerHTML += `
+  //     <div id="mealtime-${breakfastId}"
+  //       <li>${food.name}
+  //         <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[0].id}-foodId-${food.id}">-</button>
+  //       </li>
+  //     </div>
+  //       `
+  //     )//end of rendering breakfast card details
+  //
+  //
+  //     //render lunch details for specific day
+  //     lunchTitle.innerHTML = `<h3>${foundDay.mealtimes[1].name}</h3>
+  //     <button class="addButton" id="${lunchId}">+</button>`
+  //     lunchContainer.innerHTML = '';
+  //     lunchFood.forEach((food) =>
+  //     lunchContainer.innerHTML += `
+  //     <div id="mealtime-${lunchId}"
+  //       <li>${food.name}
+  //         <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[1].id}-foodId-${food.id}"
+  //       >
+  //         -
+  //       </button>
+  //       </li>
+  //     </div>
+  //     `
+  //   )//end of rendering lunch card details
+  //
+  //   //render dinner details for specific day
+  //   dinnerTitle.innerHTML = `<h3>${foundDay.mealtimes[2].name}</h3>
+  //   <button class="addButton" id="${dinnerId}">+</button>`
+  //   dinnerContainer.innerHTML = '';
+  //   dinnerFood.forEach((food) =>
+  //   dinnerContainer.innerHTML += `
+  //   <div id="mealtime-${dinnerId}"
+  //       <li>${food.name}
+  //         <button
+  //           class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[2].id}-foodId-${food.id}"
+  //         >
+  //           -
+  //         </button>
+  //       </li>
+  //   </div>
+  //   `
+  //   )//end of dinner details
+  //
+  // }//end of if statement e.target.className === "list-group-item"
 
 
   // //-------------START event listener delete food BREAKFAST-------//
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // //-------------END event listener delete food DINNER-------//
 
 
-})
+
 //-------------END event listener click on days-------//
 
 
@@ -226,7 +226,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function buildCard(data) {
-    const energy = data.nutrients.ENERC_KCAL ? `<p>${data.nutrients.ENERC_KCAL.toFixed(1)}kcal</p>` : ''
+    const energy = data.nutrients.ENERC_KCAL ? `<p>Energy: ${data.nutrients.ENERC_KCAL.toFixed(1)}kcal</p>` : ''
+    const carbs = data.nutrients.CHOCDF ? `<p>Carbs: ${data.nutrients.CHOCDF.toFixed(1)}g</p>` : ''
+    const protein = data.nutrients.PROCNT ? `<p>Protein: </b><span>${data.nutrients.PROCNT.toFixed(1)}g</p>` : ''
+    const fat = data.nutrients.FAT ? `<p>Fat: ${data.nutrients.FAT.toFixed(1)}g</p>` : ''
     const foodName1 = data.label.split(',')[0]
     const foodName2 = data.label.split(',')[1]
     const html = `
@@ -234,6 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="card-header">
         <p class="food-name">${foodName1} -${foodName2}</p>
         <p class="food-calorie">${energy}</p>
+        <p class="food-calorie">${carbs}</p>
+        <p class="food-calorie">${protein}</p>
+        <p class="food-calorie">${fat}</p>
         <button class="add-to-mealtime">Add to meal</button>
       </div>
     </div>
@@ -256,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
       thisBreakfast.remove();
       deleteFood(clickedFoodId)
     }
-    else if (e.target.className === 'addButton') {
+    else if (e.target.className.includes('addButton')){
       buttonId = e.target.parentElement.id
       dayId = buttonId.split("-")[0]
       mealtimeId = buttonId.split("-")[1]
