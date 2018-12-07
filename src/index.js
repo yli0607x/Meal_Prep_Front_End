@@ -10,12 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const lunchCard = document.querySelector('#lunch-detail')
   const dinnerCard = document.querySelector('#dinner-detail')
 //------------------
-  let breakfastContainer = document.querySelector('.breakfast-time-container')
-  let lunchContainer = document.querySelector('.lunch-time-container')
-  let dinnerContainer = document.querySelector('.dinner-time-container')
+  let breakfastContainer = document.querySelector('#breakfast-time-container')
+  // let lunchContainer = document.querySelector('.lunch-time-container')
+  // let dinnerContainer = document.querySelector('.dinner-time-container')
   let oneWeek = [];
   const searchFood = document.querySelector('#search-food');
   const searchFoodResult = document.querySelector('#result');
+  const mealTimeContainer = document.querySelector('#meal-time')
+  const searchArea = document.querySelector('#search-area')
+  let dayId
+  let mealtimeId
 
 
 
@@ -24,11 +28,33 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(userDataJSON => {
       oneWeek = userDataJSON;
-      console.log(userDataJSON);
-      userDataJSON.forEach(day => {
+      //console.log(userDataJSON);
+      for(let i = 0; i < userDataJSON.length; i++){
+        //console.log('USER DATA AT i level', userDataJSON[i]);
+        // console.log(i);
+        // console.log(userDataJSON[i].mealtimes);
+        for (let j = 0; j < userDataJSON[i].mealtimes.length; j++){
+          //console.log('HOPEFULLY MEALTIMES', userDataJSON[i].mealtimes[j]);
+          // console.log(i,j);
+          let foodDesId =(`${i+1}-${j+1}`)
+          let foods = userDataJSON[i].mealtimes[j].foods
 
-        dayContainer.innerHTML += `<li style="text-align:center" class="list-group-item" id="${day.id}">${day.name}</li>`
-      })//end of render each day
+          let foodForContainer = foods.filter(food => food.mealtime_id === userDataJSON[i].mealtimes[j].id)
+          let foodCell = document.getElementById(`${userDataJSON[i].id}-${userDataJSON[i].mealtimes[j].id}`)
+
+          foods.forEach(food => foodCell.innerHTML += `<li>${food.name}
+            <button class="mini ui teal basic button delete" id="dayId-${userDataJSON[i].id}-mealtimeId-${userDataJSON[i].mealtimes[j].id}-foodId-${food.id}">-</button>
+          </li>`)
+        }
+      }
+      // userDataJSON.forEach(day => {
+      //   console.log(day);
+      //
+      //
+      // })
+      //
+      //   dayContainer.innerHTML += `<li style="text-align:center" class="list-group-item" id="${day.id}">${day.name}</li>`
+      //})//end of render each day
     })//end of then
   //---------------END fetch days & show-----------//
 
@@ -40,38 +66,49 @@ document.addEventListener('DOMContentLoaded', () => {
       let breakfastFood = foundDay.mealtimes[0].foods
       let lunchFood = foundDay.mealtimes[1].foods
       let dinnerFood = foundDay.mealtimes[2].foods
+      let breakfastId = foundDay.mealtimes[0].id
+      let lunchId = foundDay.mealtimes[1].id
+      let dinnerId = foundDay.mealtimes[2].id
 
       //render breakfast details for specific day
-      breakfastTitle.innerText = `${foundDay.mealtimes[0].name}`
+      breakfastTitle.innerHTML = `<h3>${foundDay.mealtimes[0].name}</h3>
+      <button class="addButton" id="${breakfastId}">+</button>`
       breakfastContainer.innerHTML = '';
       breakfastFood.forEach((food) =>
       breakfastContainer.innerHTML += `
+      <div id="mealtime-${breakfastId}"
         <li>${food.name}
           <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[0].id}-foodId-${food.id}">-</button>
         </li>
+      </div>
         `
       )//end of rendering breakfast card details
 
 
       //render lunch details for specific day
-      lunchTitle.innerText = `${foundDay.mealtimes[1].name}`
+      lunchTitle.innerHTML = `<h3>${foundDay.mealtimes[1].name}</h3>
+      <button class="addButton" id="${lunchId}">+</button>`
       lunchContainer.innerHTML = '';
       lunchFood.forEach((food) =>
       lunchContainer.innerHTML += `
+      <div id="mealtime-${lunchId}"
         <li>${food.name}
           <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[1].id}-foodId-${food.id}"
         >
           -
         </button>
         </li>
+      </div>
       `
     )//end of rendering lunch card details
 
     //render dinner details for specific day
-    dinnerTitle.innerText = `${foundDay.mealtimes[2].name}`
+    dinnerTitle.innerHTML = `<h3>${foundDay.mealtimes[2].name}</h3>
+    <button class="addButton" id="${dinnerId}">+</button>`
     dinnerContainer.innerHTML = '';
     dinnerFood.forEach((food) =>
     dinnerContainer.innerHTML += `
+    <div id="mealtime-${dinnerId}"
         <li>${food.name}
           <button
             class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[2].id}-foodId-${food.id}"
@@ -79,53 +116,56 @@ document.addEventListener('DOMContentLoaded', () => {
             -
           </button>
         </li>
+    </div>
     `
     )//end of dinner details
 
   }//end of if statement e.target.className === "list-group-item"
 
 
-  //-------------START event listener delete food BREAKFAST-------//
-  breakfastContainer.addEventListener('click', function(event){
-    if (event.target.className.includes('delete')){
-      let clickedFoodId = event.target.id;
-      let thisBreakfastButton = document.getElementById(clickedFoodId)
-      let thisBreakfast = thisBreakfastButton.parentElement
-      thisBreakfast.remove();
-      deleteFood(clickedFoodId)
-    }
-  });
-  //-------------END event listener delete food BREAKFAST-------//
-
-  //-------------START event listener delete food LUNCH-------//
-  lunchContainer.addEventListener('click', function(event){
-    console.log(event);
-    console.log(event.target.className.includes('delete'));
-    if (event.target.className.includes('delete')){
-
-      let clickedFoodId = event.target.id
-      let thisLunchButton = document.getElementById(clickedFoodId)
-      let thisLunch = thisLunchButton.parentElement
-      //debugger
-      thisLunch.remove();
-      deleteFood(clickedFoodId)
-    }
-  });
-  //-------------END event listener delete food LUNCH-------//
-
-  //-------------START event listener delete food DINNER-------//
-  dinnerContainer.addEventListener('click', function(event){
-
-    if (event.target.className.includes('delete')){
-      let clickedFoodId = event.target.id
-      debugger
-      let thisDinnerButton = document.getElementById(clickedFoodId)
-      let thisDinner = thisDinnerButton.parentElement
-      thisDinner.remove();
-      deleteFood(clickedFoodId)
-    }
-  });
-  //-------------END event listener delete food DINNER-------//
+  // //-------------START event listener delete food BREAKFAST-------//
+  // document.addEventListener('click', e => {
+  //   console.log(e.target.className);
+  //   if (e.target.className.includes('delete')){
+  //     let clickedFoodId = event.target.id;
+  //     let thisBreakfastButton = document.getElementById(clickedFoodId)
+  //     let thisBreakfast = thisBreakfastButton.parentElement
+  //
+  //     thisBreakfast.remove();
+  //     deleteFood(clickedFoodId)
+  //   }
+  // });
+  // //-------------END event listener delete food BREAKFAST-------//
+  //
+  // //-------------START event listener delete food LUNCH-------//
+  // lunchContainer.addEventListener('click', function(event){
+  //   console.log(event);
+  //   console.log(event.target.className.includes('delete'));
+  //   if (event.target.className.includes('delete')){
+  //
+  //     let clickedFoodId = event.target.id
+  //     let thisLunchButton = document.getElementById(clickedFoodId)
+  //     let thisLunch = thisLunchButton.parentElement
+  //     //debugger
+  //     thisLunch.remove();
+  //     deleteFood(clickedFoodId)
+  //   }
+  // });
+  // //-------------END event listener delete food LUNCH-------//
+  //
+  // //-------------START event listener delete food DINNER-------//
+  // dinnerContainer.addEventListener('click', function(event){
+  //
+  //   if (event.target.className.includes('delete')){
+  //     let clickedFoodId = event.target.id
+  //     // debugger
+  //     let thisDinnerButton = document.getElementById(clickedFoodId)
+  //     let thisDinner = thisDinnerButton.parentElement
+  //     thisDinner.remove();
+  //     deleteFood(clickedFoodId)
+  //   }
+  // });
+  // //-------------END event listener delete food DINNER-------//
 
 
 })
@@ -193,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="card">
       <div class="card-header">
         <p class="food-name">${foodName1} -${foodName2}</p>
-        <p>${energy}</p>
+        <p class="food-calorie">${energy}</p>
         <button class="add-to-mealtime">Add to meal</button>
       </div>
     </div>
@@ -203,17 +243,177 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initEvent()
   //-------------end of search for food--------------//
-  searchFoodResult.addEventListener('click', e =>{
-    if(e.target.className === "add-to-mealtime"){
-      let foodName = document.querySelector('.food-name').innerText
 
+
+  //-------------start of add to list---------------//
+
+  document.addEventListener('click', e =>{
+    if (e.target.className.includes('delete')){
+      let clickedFoodId = event.target.id;
+      let thisBreakfastButton = document.getElementById(clickedFoodId)
+      let thisBreakfast = thisBreakfastButton.parentElement
+
+      thisBreakfast.remove();
+      deleteFood(clickedFoodId)
+    }
+    else if (e.target.className === 'addButton') {
+      buttonId = e.target.parentElement.id
+      dayId = buttonId.split("-")[0]
+      mealtimeId = buttonId.split("-")[1]
+      console.log(dayId, mealtimeId);
+      searchArea.dataset.id = buttonId
+      if(searchArea.style.display = ''){
+        searchArea.style.display = 'block'
+      }
     }
   })
-  //-------------start of add to list---------------//
+
+        // else if(searchArea.style.display = 'block')
+        // {searchArea.style.display = ''}
+      // console.log(searchArea.dataset.id);
+      // } else if(e.target.className === 'add-to-mealtime') {
+      // console.log(searchArea.dataset.id);
+  searchArea.addEventListener('click', e => {
+
+    if(e.target.className === 'add-to-mealtime'){
+      let searchAreaId = e.target.parentElement.parentElement.parentElement.parentElement.dataset.id
+      let dayId = searchAreaId.split("-")[0]
+      let mealtimeId = searchAreaId.split("-")[1]
+      console.log(dayId)
+      console.log(mealtimeId);
+          let addBtn = searchArea.querySelector('.add-to-mealtime')
+          let addFoodContainerId = `${dayId}-${mealtimeId}`
+          let addFoodContainer = document.getElementById(addFoodContainerId)
+          //console.log(addFoodContainer)
+          let addFoodName = document.getElementsByClassName('food-name')[0].innerText
+          let addFoodCalorie = document.getElementsByClassName('food-calorie')[0].innerText
+          console.log(addFoodName);
+            fetch(`http://localhost:3000/api/v1/users/1/days/${dayId}/mealtimes/${mealtimeId}/foods`,
+               { method: 'POST',
+                 headers: {
+                   'Content-Type': 'application/json', //data we are sending to the server
+                   'Accept': 'application/json' //data type we want back from the server
+                 },//end of header
+                 body: JSON.stringify({
+                   'name': addFoodName,
+                   'calories': addFoodCalorie,
+                   'mealtime_id': mealtimeId
+                 })//end of body
+               })//end of fetch
+              .then(r => r.json())
+              .then((newFoodObj) =>{
+                console.log(newFoodObj)
+                addFoodContainer.innerHTML += `
+                <li>${addFoodName}
+                  <button class="mini ui teal basic button delete" id="dayId-${dayId}-mealtimeId-${mealtimeId}-foodId-${newFoodObj.id}">-</button>
+                </li>`
+              })//end of then
+    }
+  })
+
 
   //-------------end of add to list-----------------//
 
+//------------shopping list----------//
+//selecting dom elements for manipulation
+var input = document.querySelector("input[type = 'text']");
+var ul = document.querySelector(".todos");
+var container = document.querySelector("div");
+var lists = document.querySelectorAll("li");
+var spans = document.getElementsByTagName("span");
+var pencil = document.querySelector("#pencil");
+var saveBtn = document.querySelector(".save");
+var clearBtn = document.querySelector(".clear");
+var tipsBtn = document.querySelector(".tipBtn");
+var closeBtn = document.querySelector(".closeBtn");
+var overlay = document.getElementById("overlay")
 
+
+//function to delete todo if delete span is clicked.
+function deleteTodo(){
+  for(let span of spans){
+    span.addEventListener ("click",function (){
+      span.parentElement.remove();
+      event.stopPropagation();
+    });
+  }
+}
+
+//function to load todo if list is found in local storage.
+function loadTodo(){
+  if(localStorage.getItem('todoList')){
+    ul.innerHTML = localStorage.getItem('todoList');
+    deleteTodo();
+  }
+}
+
+//event listener for input to add new todo to the list.
+input.addEventListener("keypress",function(keyPressed){
+  if(keyPressed.which === 13){
+    //creating lists and span when enter is clicked
+    var li = document.createElement("li");
+    var spanElement = document.createElement("span");
+    var icon = document.createElement("i");
+
+    var newTodo = this.value;
+    this.value = " " ;
+
+    icon.classList.add('fas', 'fa-trash-alt');
+    spanElement.append(icon);
+    ul.appendChild(li).append(spanElement,newTodo);
+
+    deleteTodo();
+
+    }
+
+});
+
+// event listener to linethrough list if clicked
+ul.addEventListener('click', function(ev) {
+    if (ev.target.tagName === 'LI') {
+      ev.target.classList.toggle('checked');
+    }
+  },false
+);
+
+//hide input box,when pencil icon is clicked
+pencil.addEventListener('click', function(){
+  input.classList.toggle('display');
+});
+
+
+
+//save todolist state so user can access it later
+saveBtn.addEventListener('click',function(){
+  localStorage.setItem('todoList',ul.innerHTML );
+
+});
+
+//clear all todo when clear button is clicked
+clearBtn.addEventListener('click', function(){
+  ul.innerHTML= "";
+  localStorage.removeItem('todoList',ul.innerHTML );
+});
+
+//display overlay when tips btn is clicked
+tipsBtn.addEventListener("click",function(){
+   overlay.style.height = "100%";
+});
+
+//close overlay when close btn is clicked
+closeBtn.addEventListener("click",function(e){
+  e.preventDefault;
+  overlay.style.height = "0";
+
+})
+
+//delete todo
+deleteTodo();
+
+//load Todo
+loadTodo();
+
+//-------------end of shopping list------//
 })//end of DOM Content
 
 //***************************

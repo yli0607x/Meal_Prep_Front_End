@@ -1,0 +1,108 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>Mod 3 Final Project</title>
+  <link rel = "Stylesheet" href = "src/index.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+     </head>
+
+  <style>
+    img {
+      max-height: 200px;
+    }
+    textarea {
+      width: 100%;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <div class='row'>
+
+    <div class='col-md-3'>
+      <ul class="list-group" id="list-group">
+        hi
+      </ul>
+    </div>
+
+    <div class='col-md-4' id='meal-time'>
+      <div class='row'>
+        <div class="col">
+          <div id="breakfast-title"></div>
+          <div id="breakfast-detail">
+            <ul class="breakfast-time-container">
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class="col">
+          <div id="lunch-title"></div>
+          <div id="lunch-detail">
+            <ul class="lunch-time-container">
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class="col">
+          <div id="dinner-title"></div>
+          <div id="dinner-detail">
+            <ul class="dinner-time-container">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-md-3' id='search-area' style='display: none'>
+      <div id="search-food">
+        <form id="search" name="search">
+          <input name="name" placeholder="Type a food or a meal...">
+          <button type="submit">SEARCH</button>
+        </form>
+      </div>
+      <div id="result">
+      </div>
+    </div>
+
+
+    <div class='col-md-3'>
+      <div class="shopping-list">
+        <div id = "todo">
+            <h3> Shopping List <i id="pencil" class="fas fa-pencil-alt"></i> </h3>
+
+            <input type = "text" placeholder="Add New Todo">
+
+            <ul class="todos">
+
+                <li id ='task-list'><span><i class="fas fa-trash-alt"></i></span>Go to the salon</li>
+            </ul>
+
+            <div id= "buttons">
+                <button class="save">Save</button>
+                <button class="clear">Clear</button>
+                <button class="tipBtn">Tips</button>
+            </div>
+        </div>
+        <div id = "overlay">
+           <a href="javascript:void(0)" class="closebtn">&times;</a>
+           <ul class="tips">
+               <li>Click on the pencil to hide or show input area</li>
+               <li>Type text into input area and press enter to add todo to list</li>
+               <li>Hover over the todo and click the on trash can to delete</li>
+               <li>Click the clear button to clear all todos from list</li>
+               <li>Click the Save button to save your todos to access them later even if you exit the browser </li>
+            </ul>
+
+        </div>
+      </div>
+    </div>
+  <script src="src/index.js"></script>
+</body>
+</html>
