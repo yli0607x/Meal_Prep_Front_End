@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let foodCell = document.getElementById(`${userDataJSON[i].id}-${userDataJSON[i].mealtimes[j].id}`)
 
           foods.forEach(food => foodCell.innerHTML += `<li>${food.name}
-            <button class="mini ui teal basic button delete" id="dayId-${userDataJSON[i].id}-mealtimeId-${userDataJSON[i].mealtimes[j].id}-foodId-${food.id}">-</button>
+            <button class="mini ui grey button delete" id="dayId-${userDataJSON[i].id}-mealtimeId-${userDataJSON[i].mealtimes[j].id}-foodId-${food.id}">-</button>
           </li>`)
         }
       }
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       breakfastContainer.innerHTML += `
       <div id="mealtime-${breakfastId}"
         <li>${food.name}
-          <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[0].id}-foodId-${food.id}">-</button>
+          <button class="mini ui grey button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[0].id}-foodId-${food.id}">-</button>
         </li>
       </div>
         `
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lunchContainer.innerHTML += `
       <div id="mealtime-${lunchId}"
         <li>${food.name}
-          <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[1].id}-foodId-${food.id}"
+          <button class="mini ui grey button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[1].id}-foodId-${food.id}"
         >
           -
         </button>
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div id="mealtime-${dinnerId}"
         <li>${food.name}
           <button
-            class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[2].id}-foodId-${food.id}"
+            class="mini ui grey button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[2].id}-foodId-${food.id}"
           >
             -
           </button>
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
       thisBreakfast.remove();
       deleteFood(clickedFoodId)
     }
-    else if (e.target.className === 'addButton') {
+    else if (e.target.className.includes('addButton')) {
       buttonId = e.target.parentElement.id
       dayId = buttonId.split("-")[0]
       mealtimeId = buttonId.split("-")[1]
@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(newFoodObj)
                 addFoodContainer.innerHTML += `
                 <li>${addFoodName}
-                  <button class="mini ui teal basic button delete" id="dayId-${dayId}-mealtimeId-${mealtimeId}-foodId-${newFoodObj.id}">-</button>
+                  <button class="mini ui grey button delete" id="dayId-${dayId}-mealtimeId-${mealtimeId}-foodId-${newFoodObj.id}">-</button>
                 </li>`
               })//end of then
     }

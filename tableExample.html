@@ -1,0 +1,157 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Abel|Homemade+Apple|Poppins|Sacramento" rel="stylesheet">
+<title>Mod 3 Final Project</title>
+
+
+  <style>
+    img {
+      max-height: 200px;
+    }
+    textarea {
+      width: 100%;
+    }
+
+    #app-name {
+      margin-top: 2%;
+    }
+
+    table {
+      width: 80%;
+      margin-top: 7%;
+      float: left;
+    }
+    th {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      text-align: center;
+      width: 10%;
+    }
+    td {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      text-align: center;
+      height: 150px;
+        width: 10%;
+
+    }
+
+    #search-bar-container{
+      border: 1px solid black;
+      float: right;
+      width: 17%;
+      height: 5%;
+      margin-right: 1%;
+      margin-top: 3%;
+    }
+
+    #shopping-list{
+      border: 1px solid black;
+      float: right;
+      width: 17%;
+      height: 61%;
+      margin-right: 1%;
+      margin-top: 1.5%;
+    }
+
+    #shopping-list-title{
+      font-size: 1.5em;
+      padding-top: 4%;
+      text-align: center;
+      font-family: 'Homemade Apple', cursive;
+    }
+
+    .weekday-text{
+      font-size: 1.3em;
+      font-family: 'Abel', sans-serif;
+    }
+
+     .meal-time-text{
+       font-size: 1.3em;
+       font-family: 'Poppins', sans-serif;
+     }
+
+     .foods-text{
+      overflow: scroll;
+      font-family: 'Poppins', sans-serif;
+     }
+
+     /* #background {
+  background-image: url('images/bottle-bowl-breakfast-704971.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+
+  opacity: 0.6;
+} */
+
+
+  </style>
+
+</head>
+<body>
+<div id="background">
+
+  <h1 id="app-name">"INSERT APP NAME HERE"</h1>
+  <table>
+  <tr>
+    <th></th>
+    <th class="weekday-text">Monday</th>
+    <th class="weekday-text">Tuesday</th>
+    <th class="weekday-text">Wednesday</th>
+    <th class="weekday-text">Thursday</th>
+    <th class="weekday-text">Friday</th>
+    <th class="weekday-text">Saturday</th>
+    <th class="weekday-text">Sunday</th>
+  </tr>
+  <tr>
+    <td class="meal-time-text">Breakfast</td>
+    <td class="foods-text" id="mealtime-1">1</td>
+    <td class="foods-text" id="mealtime-4">4</td>
+    <td class="foods-text" id="mealtime-7">7</td>
+    <td class="foods-text" id="mealtime-10">10</td>
+    <td class="foods-text" id="mealtime-13">13</td>
+    <td class="foods-text" id="mealtime-16">16</td>
+    <td class="foods-text" id="mealtime-19">19</td>
+
+  </tr>
+  <tr>
+    <td class="meal-time-text">Lunch</td>
+    <td class="foods-text" id="mealtime-2"></td>
+    <td class="foods-text" id="mealtime-5"></td>
+    <td class="foods-text" id="mealtime-8"></td>
+    <td class="foods-text" id="mealtime-11"></td>
+    <td class="foods-text" id="mealtime-14"></td>
+    <td class="foods-text" id="mealtime-17"></td>
+    <td class="foods-text" id="mealtime-20"></td>
+  </tr>
+  <tr>
+    <td class="meal-time-text">Dinner</td>
+    <td class="foods-text" id="mealtime-3"></td>
+    <td class="foods-text" id="mealtime-6"></td>
+    <td class="foods-text" id="mealtime-9"></td>
+    <td class="foods-text" id="mealtime-12"></td>
+    <td class="foods-text" id="mealtime-15"></td>
+    <td class="foods-text" id="mealtime-18"></td>
+    <td class="foods-text" id="mealtime-21"></td>
+  </tr>
+</table>
+<div id="search-bar-container">
+
+</div>
+<div id="shopping-list">
+  <h1 id="shopping-list-title">Shopping List</h1>
+
+</div>
+</div><!-- end background -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="src/index.js"></script>
+
+</body>
+</html>
