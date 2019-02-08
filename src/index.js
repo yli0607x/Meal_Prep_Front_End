@@ -4,15 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let breakfastTitle = document.getElementById('breakfast-title');
   let lunchTitle = document.getElementById('lunch-title');
   let dinnerTitle = document.getElementById('dinner-title');
-
-//-----did't use these, do we need them?
-  const breakfastCard = document.querySelector('#breakfast-detail')
-  const lunchCard = document.querySelector('#lunch-detail')
-  const dinnerCard = document.querySelector('#dinner-detail')
-//------------------
   let breakfastContainer = document.querySelector('#breakfast-time-container')
-  // let lunchContainer = document.querySelector('.lunch-time-container')
-  // let dinnerContainer = document.querySelector('.dinner-time-container')
   let oneWeek = [];
   const searchFood = document.querySelector('#search-food');
   const searchFoodResult = document.querySelector('#result');
@@ -28,14 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(userDataJSON => {
       oneWeek = userDataJSON;
-      //console.log(userDataJSON);
       for(let i = 0; i < userDataJSON.length; i++){
-        //console.log('USER DATA AT i level', userDataJSON[i]);
-        // console.log(i);
-        // console.log(userDataJSON[i].mealtimes);
         for (let j = 0; j < userDataJSON[i].mealtimes.length; j++){
-          //console.log('HOPEFULLY MEALTIMES', userDataJSON[i].mealtimes[j]);
-          // console.log(i,j);
           let foodDesId =(`${i+1}-${j+1}`)
           let foods = userDataJSON[i].mealtimes[j].foods
 
@@ -47,130 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
           </li>`)
         }
       }
-      // userDataJSON.forEach(day => {
-      //   console.log(day);
-      //
-      //
-      // })
-      //
-      //   dayContainer.innerHTML += `<li style="text-align:center" class="list-group-item" id="${day.id}">${day.name}</li>`
       //})//end of render each day
     })//end of then
   //---------------END fetch days & show-----------//
 
-
-  // //-------------event listener click on days-------//
-  // dayContainer.addEventListener('click', e => {
-  //   if(e.target.className === "list-group-item") {
-  //     let clickedDayId = e.target.id
-  //     let foundDay = oneWeek.find((day) => day.id == clickedDayId )
-  //     let breakfastFood = foundDay.mealtimes[0].foods
-  //     let lunchFood = foundDay.mealtimes[1].foods
-  //     let dinnerFood = foundDay.mealtimes[2].foods
-  //     let breakfastId = foundDay.mealtimes[0].id
-  //     let lunchId = foundDay.mealtimes[1].id
-  //     let dinnerId = foundDay.mealtimes[2].id
-  //
-  //     //render breakfast details for specific day
-  //     breakfastTitle.innerHTML = `<h3>${foundDay.mealtimes[0].name}</h3>
-  //     <button class="addButton" id="${breakfastId}">+</button>`
-  //     breakfastContainer.innerHTML = '';
-  //     breakfastFood.forEach((food) =>
-  //     breakfastContainer.innerHTML += `
-  //     <div id="mealtime-${breakfastId}"
-  //       <li>${food.name}
-  //         <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[0].id}-foodId-${food.id}">-</button>
-  //       </li>
-  //     </div>
-  //       `
-  //     )//end of rendering breakfast card details
-  //
-  //
-  //     //render lunch details for specific day
-  //     lunchTitle.innerHTML = `<h3>${foundDay.mealtimes[1].name}</h3>
-  //     <button class="addButton" id="${lunchId}">+</button>`
-  //     lunchContainer.innerHTML = '';
-  //     lunchFood.forEach((food) =>
-  //     lunchContainer.innerHTML += `
-  //     <div id="mealtime-${lunchId}"
-  //       <li>${food.name}
-  //         <button class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[1].id}-foodId-${food.id}"
-  //       >
-  //         -
-  //       </button>
-  //       </li>
-  //     </div>
-  //     `
-  //   )//end of rendering lunch card details
-  //
-  //   //render dinner details for specific day
-  //   dinnerTitle.innerHTML = `<h3>${foundDay.mealtimes[2].name}</h3>
-  //   <button class="addButton" id="${dinnerId}">+</button>`
-  //   dinnerContainer.innerHTML = '';
-  //   dinnerFood.forEach((food) =>
-  //   dinnerContainer.innerHTML += `
-  //   <div id="mealtime-${dinnerId}"
-  //       <li>${food.name}
-  //         <button
-  //           class="mini ui teal basic button delete" id="dayId-${clickedDayId}-mealtimeId-${foundDay.mealtimes[2].id}-foodId-${food.id}"
-  //         >
-  //           -
-  //         </button>
-  //       </li>
-  //   </div>
-  //   `
-  //   )//end of dinner details
-  //
-  // }//end of if statement e.target.className === "list-group-item"
-
-
-  // //-------------START event listener delete food BREAKFAST-------//
-  // document.addEventListener('click', e => {
-  //   console.log(e.target.className);
-  //   if (e.target.className.includes('delete')){
-  //     let clickedFoodId = event.target.id;
-  //     let thisBreakfastButton = document.getElementById(clickedFoodId)
-  //     let thisBreakfast = thisBreakfastButton.parentElement
-  //
-  //     thisBreakfast.remove();
-  //     deleteFood(clickedFoodId)
-  //   }
-  // });
-  // //-------------END event listener delete food BREAKFAST-------//
-  //
-  // //-------------START event listener delete food LUNCH-------//
-  // lunchContainer.addEventListener('click', function(event){
-  //   console.log(event);
-  //   console.log(event.target.className.includes('delete'));
-  //   if (event.target.className.includes('delete')){
-  //
-  //     let clickedFoodId = event.target.id
-  //     let thisLunchButton = document.getElementById(clickedFoodId)
-  //     let thisLunch = thisLunchButton.parentElement
-  //     //debugger
-  //     thisLunch.remove();
-  //     deleteFood(clickedFoodId)
-  //   }
-  // });
-  // //-------------END event listener delete food LUNCH-------//
-  //
-  // //-------------START event listener delete food DINNER-------//
-  // dinnerContainer.addEventListener('click', function(event){
-  //
-  //   if (event.target.className.includes('delete')){
-  //     let clickedFoodId = event.target.id
-  //     // debugger
-  //     let thisDinnerButton = document.getElementById(clickedFoodId)
-  //     let thisDinner = thisDinnerButton.parentElement
-  //     thisDinner.remove();
-  //     deleteFood(clickedFoodId)
-  //   }
-  // });
-  // //-------------END event listener delete food DINNER-------//
-
-
-
-//-------------END event listener click on days-------//
 
 
   //-------------start of search for food-------------//
@@ -277,11 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-        // else if(searchArea.style.display = 'block')
-        // {searchArea.style.display = ''}
-      // console.log(searchArea.dataset.id);
-      // } else if(e.target.className === 'add-to-mealtime') {
-      // console.log(searchArea.dataset.id);
   searchArea.addEventListener('click', e => {
 
     if(e.target.className === 'add-to-mealtime'){
